@@ -34,12 +34,15 @@ func (g *Generation) CreateTable() _interface.TableGenerationInterface {
 
 func (g *Generation) AddHeadingText(text string) {
 	para := g.doc.AddParagraph()
-	para.AddRun().AddText(text)
+	run := para.AddRun()
+	run.Properties().SetFontFamily(documentFontFamily)
+	run.AddText(text)
 }
 
 func (g *Generation) AddText(text string) {
 	para := g.doc.AddParagraph()
 	run := para.AddRun()
+	run.Properties().SetFontFamily(documentFontFamily)
 	run.Properties().SetSize(8)
 	run.AddText(text)
 }

@@ -50,7 +50,8 @@ func run() error {
 
 func generation(g _interface.GenerationInterface, files []models.FileInfo) error {
 	table := g.CreateTable()
-	table.AddRow([]string{"No.", "File", "Description", "Rows of code", "Size (Kb)"})
+	table.AddRow([]string{"Номер", "Файл", "Описание", "Количество строк", "Размер (Кбайт)"})
+	table.AddRow([]string{"1", "2", "3", "4", "5"})
 
 	for n, f := range files {
 		fileNumber := strconv.Itoa(n + 1)
