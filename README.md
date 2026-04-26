@@ -26,3 +26,16 @@
         SupportFunctions.go
         welcome.go
 ```
+
+### Ignore files
+
+Create `.codereportignore` in the scanned project root to exclude files and folders from the report.
+
+```gitignore
+cache/
+*.log
+/root-only-folder/
+!keep.log
+```
+
+CodeReport also ignores common dependency, cache, build, binary and media files by default, including `__pycache__`, `node_modules`, `.git`, `dist`, `build`, `*.pyc`, archives, images, fonts and executables.
