@@ -71,42 +71,20 @@ temp/
 
 CodeReport **автоматически исключает** следующие типы файлов и папок, даже если `.codereportignore` не создан:
 
-**Системные папки:**
-- `.git/`, `.idea/`, `.vscode/`, `.DS_Store`
+| Категория | Исключаемые файлы/папки |
+|-----------|------------------------|
+| **Системные папки** | `.git/`, `.idea/`, `.vscode/`, `.DS_Store` |
+| **Кэш и временные** | `__pycache__/`, `.pytest_cache/`, `.mypy_cache/`, `.ruff_cache/`, `.tox/`, `.cache/`, `.next/`, `.nuxt/`, `htmlcov/` |
+| **Виртуальные окружения** | `.venv/`, `venv/`, `env/` |
+| **Зависимости** | `node_modules/`, `vendor/` |
+| **Файлы сборки** | `dist/`, `build/`, `target/`, `out/`, `bin/`, `obj/` |
+| **Скомпилированные файлы** | `*.pyc`, `*.pyo`, `*.pyd`, `*.exe`, `*.dll`, `*.so`, `*.dylib`, `*.class`, `*.jar`, `*.war`, `*.ear` |
+| **Архивы** | `*.zip`, `*.tar`, `*.gz`, `*.rar`, `*.7z` |
+| **Медиафайлы** | `*.png`, `*.jpg`, `*.jpeg`, `*.gif`, `*.svg`, `*.webp`, `*.ico`, `*.mp3`, `*.mp4`, `*.webm` |
+| **Документы и таблицы** | `*.doc`, `*.docx`, `*.xlsx`, `*.pptx`, `*.pdf` |
+| **Файлы конфигурации и блокировки** | `package-lock.json`, `yarn.lock`, `pnpm-lock.yaml`, `composer.lock`, `poetry.lock`, `Pipfile.lock`, `.env` |
+| **Базы данных и логи** | `*.sqlite`, `*.sqlite3`, `*.db`, `*.log` |
+| **Минифицированные и map-файлы** | `*.min.js`, `*.min.css`, `*.map` |
+| **Шрифты** | `*.ttf`, `*.woff`, `*.woff2`, `*.eot`, `*.otf` |
 
-**Кэш и временные файлы:**
-- `__pycache__/`, `.pytest_cache/`, `.mypy_cache/`, `.ruff_cache/`, `.tox/`, `.cache/`, `.next/`, `.nuxt/`, `htmlcov/`
-
-**Виртуальные окружения:**
-- `.venv/`, `venv/`, `env/`
-
-**Зависимости:**
-- `node_modules/`, `vendor/`
-
-**Файлы сборки:**
-- `dist/`, `build/`, `target/`, `out/`, `bin/`, `obj/`
-
-**Скомпилированные файлы:**
-- `*.pyc`, `*.pyo`, `*.pyd`, `*.exe`, `*.dll`, `*.so`, `*.dylib`, `*.class`, `*.jar`, `*.war`, `*.ear`
-
-**Архивы:**
-- `*.zip`, `*.tar`, `*.gz`, `*.rar`, `*.7z`
-
-**Медиафайлы:**
-- `*.png`, `*.jpg`, `*.jpeg`, `*.gif`, `*.svg`, `*.webp`, `*.ico`, `*.mp3`, `*.mp4`, `*.webm`
-
-**Документы и таблицы:**
-- `*.doc`, `*.docx`, `*.xlsx`, `*.pptx`, `*.pdf`
-
-**Файлы конфигурации и блокировки:**
-- `package-lock.json`, `yarn.lock`, `pnpm-lock.yaml`, `composer.lock`, `poetry.lock`, `Pipfile.lock`, `.env`
-
-**Базы данных и логи:**
-- `*.sqlite`, `*.sqlite3`, `*.db`, `*.log`
-
-**Минифицированные и map-файлы:**
-- `*.min.js`, `*.min.css`, `*.map`
-
-**Шрифты:**
-- `*.ttf`, `*.woff`, `*.woff2`, `*.eot`, `*.otf`
 
