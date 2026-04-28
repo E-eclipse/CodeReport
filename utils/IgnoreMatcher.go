@@ -1,3 +1,8 @@
+// Author: Simernin Matvei
+// Created: 2026-04-26
+// Description: Пакет для работы с правилами исключения файлов и папок при анализе проекта.
+// Поддерживает синтаксис файла .codereportignore, аналогичный gitignore.
+// Позволяет отфильтровать ненужные файлы, директории и типы расширений из отчета.
 package utils
 
 import (
@@ -19,6 +24,8 @@ type IgnoreMatcher struct {
 	rules []ignoreRule
 }
 
+// NewIgnoreMatcher инициализирует новый IgnoreMatcher с правилами по умолчанию
+// и загружает дополнительные правила из файла .codereportignore в корне проекта.
 func NewIgnoreMatcher(root string) *IgnoreMatcher {
 	matcher := &IgnoreMatcher{}
 	matcher.addDefaults()
@@ -26,6 +33,8 @@ func NewIgnoreMatcher(root string) *IgnoreMatcher {
 	return matcher
 }
 
+// ShouldIgnore проверяет, должен ли файл или папка быть исключен из обработки.
+// Применяет все загруженные правила и возвращает true, если файл нужно пропустить.
 func (m *IgnoreMatcher) ShouldIgnore(relPath string, isDir bool) bool {
 	relPath = filepath.ToSlash(filepath.Clean(relPath))
 	if relPath == "." || relPath == "" {
@@ -41,6 +50,8 @@ func (m *IgnoreMatcher) ShouldIgnore(relPath string, isDir bool) bool {
 	return ignored
 }
 
+// addDefaults добавляет встроенные правила исключения для распространённых
+// папок кэша, файлов сборки, медиа и других вспомогательных файлов.
 func (m *IgnoreMatcher) addDefaults() {
 	defaultPatterns := []string{
 		".git/",
@@ -125,6 +136,8 @@ func (m *IgnoreMatcher) addDefaults() {
 	}
 }
 
+// loadFile загружает и парсит правила исключения из файла .codereportignore.
+// Если файл не существует, ошибка молча игнорируется.
 func (m *IgnoreMatcher) loadFile(path string) {
 	file, err := os.Open(path)
 	if err != nil {
@@ -138,6 +151,8 @@ func (m *IgnoreMatcher) loadFile(path string) {
 	}
 }
 
+// addRule парсит одну строку из файла .codereportignore и добавляет соответствующее правило.
+// Поддерживает: комментарии (#), отрицание (!), якорь (/) и фильтр по папкам (/).
 func (m *IgnoreMatcher) addRule(line string) {
 	line = strings.TrimSpace(line)
 	if line == "" || strings.HasPrefix(line, "#") {
@@ -170,6 +185,8 @@ func (m *IgnoreMatcher) addRule(line string) {
 	}
 }
 
+// matches проверяет, совпадает ли путь с правилом.
+// Учитывает якорирование, наличие слэшей и тип элемента (файл/папка).
 func (r ignoreRule) matches(relPath string, isDir bool) bool {
 	if r.dirOnly && !isDir {
 		return false
@@ -188,6 +205,7 @@ func (r ignoreRule) matches(relPath string, isDir bool) bool {
 	return false
 }
 
+// matchPattern проверяет соответствие паттерна (с поддержкой * и ?) имени файла или пути.
 func matchPattern(pattern, name string) bool {
 	matched, err := filepath.Match(pattern, name)
 	if err == nil && matched {
